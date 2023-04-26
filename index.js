@@ -1,1 +1,46 @@
-console.log("Entro a index.js");
+const express = require("express")
+const app = express()
+
+const puerto = 4000;
+
+app.get("/", (req, res) => {
+    res.send("Hola mundo");
+})
+
+app.get("/usuarios", (request, response)=>{
+    // Listar, solicitar informacion
+    const usuarios = [
+        {
+            id: 1,
+            nombre: "Jesus Cardenas"
+        },
+        {
+            id: 2,
+            nombre: "Angel Rodriguez"
+        },
+        {
+            id: 3,
+            nombre: "Leopoldo Ramirez"
+        }
+    ];
+    response.json(usuarios);
+})
+
+app.post("/usuarios", (request, response)=>{
+    // Agregar NUEVOS usuarios
+    response.send("Entro al endpoint de usuarios POST");
+})
+
+app.put("/usuarios", (request, response)=>{
+    // Editar usuarios
+    response.send("Entro al endpoint de usuarios PUT");
+})
+
+app.delete("/usuarios", (request, response)=>{
+    // Eliminar usuarios
+    response.send("Entro al endpoint de usuarios DELETE");
+})
+
+app.listen(puerto, () => {
+    console.log(`El servidor esta corriendo en : http://localhost:${puerto}`);
+})
